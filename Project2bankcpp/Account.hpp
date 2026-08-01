@@ -2,7 +2,8 @@
 #define ACCOUNT_HPP
 #pragma once 
 #include <iostream>
-#include <fstream>//to using ofstream 
+#include <fstream>//to using ofstream
+#include<string>
 using namespace std;
 class Account {
 protected:
@@ -31,8 +32,9 @@ public:
 			cout << "Invalid deposit amount\n ";
 		}
 	}
-	virtual void save(ofstream& outFile) = 0;
 	virtual void  withdraw(double amount) = 0;
 	virtual void displayData() = 0;
+	virtual void save(ofstream& outFile) = 0;
+
 };
 #endif 

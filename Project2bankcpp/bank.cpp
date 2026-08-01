@@ -31,10 +31,15 @@ void bank::createAccount() {
 
     cout << "Enter Account ID: ";
     while (true) {
-        while (!(cin >> ID)) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Invalid ID: Please enter numbers only: ";
+        while (!(cin >> ID) || ID < 0) {
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << "Invalid ID: Please enter numbers only: ";
+            }
+            else {
+                cout << "ID cannot be negative:enter a positive ID:\n ";
+            }
         }
         auto it = find_if(accounts.begin(), accounts.end(), [ID](auto& acc) {
             return acc->gettID() == ID;
@@ -118,7 +123,8 @@ void bank::displaydetails(const int & id) {
 	}
 }
 void bank::saveToFile() {
-    ofstream outFile("accounts.txt", ios::trunc);
+    ofstream 
+        outFile("accounts.txt", ios::trunc);
     if (!outFile) {
         cout << "error opening file for writing \n";
         return;
@@ -129,8 +135,10 @@ void bank::saveToFile() {
     outFile.close();
 }
 void bank::loadFromFile() {
-    ifstream inFile("accounts.txt");
+    ifstream
+        inFile("accounts.txt");
     if (!inFile) {//اول مره نفتحه 
+        cout << "file not found: starting with an empty bank\n";
         return;
     }
     int type, id;

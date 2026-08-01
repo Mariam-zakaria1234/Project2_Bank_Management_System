@@ -1,8 +1,6 @@
 #include <iostream>
 #include <memory>
-#include "Account.hpp"
 #include"bank.hpp"
-#include "sivCheck.hpp"
 using namespace std;
 int main() {
 	int choice;
@@ -11,7 +9,7 @@ int main() {
 	do {
 		cout << "*******************************WELCOME*********************************************\n";
 		cout << "please select the operation\n";
-		cout << "1.Withdraw\n2.Deposit\n3.Create Account\n4.Display Data\n5.Display All Account\n6.EXIT\n";
+		cout << "1.Withdraw\n2.Deposit\n3.Create Account\n4.Display Data\n5.Display All Account\n6.Save to data\n7.EXIT\n";
 		if (!(cin >> choice)) {
 			cin.clear();
 			cin.ignore(1000000, '\n');
@@ -105,6 +103,9 @@ int main() {
 				cin.clear();
 				cin.ignore(100, '\n');
 			}
+			else if (id < 0) {
+				cout << "Invalid ID: Please enter a positive number: ";
+			}
 			else {
 				break;
 			}
@@ -121,10 +122,19 @@ int main() {
 	}
 	case 6: {
 		b.saveToFile();
-		cout << "Thank you\n ";break; }
-	default: cout << "Invalid input\n";break;
+		cout << "Data saved successfully\n";
+		break;
+		}
+	case 7: {
+		cout << "Exiting the program:Goodbye...\n";
+		b.saveToFile();
+		break;
+	}
+	default: cout << "Invalid input\n";
+		break;
 		
 		} 
-	} while (choice != 6);
+
+	} while (choice != 7);
 	return 0;
 }

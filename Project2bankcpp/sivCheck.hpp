@@ -1,7 +1,7 @@
 #include <iostream>
-#include <fstream>
 #include "Account.hpp"
-#pragma once 
+#include<fstream>
+#include<string>
 #ifndef SIVCHECK_HPP
 #define SIVCHECK_HPP
 
